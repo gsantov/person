@@ -22,13 +22,13 @@ public interface IPersonService {
      * @param person informacion de persona
      * @return persona editada
      */
-    PersonEntity edit(Long clientId, UpdateClientDTO person);
+    PersonEntity edit(UpdateClientDTO person);
 
     /**
      * Actualizar solamente cierta información de persona
      * @param person informacion de persona
      */
-    void update(Long clientId, UpdatePersonDTO person);
+    void update(UpdatePersonDTO person);
 
     /**
      * Busca una persona por identificacion

@@ -27,18 +27,16 @@ public class PersonService implements IPersonService {
     }
 
     @Override
-    public PersonEntity edit(Long clientId, UpdateClientDTO person) {
+    public PersonEntity edit(UpdateClientDTO person) {
         PersonEntity personEntity = PersonMapper.INSTANCE.updatePersonDtoToPersonEntity(person);
-//        personEntity.setClientEntity(ClientEntity.builder().clientId(clientId).build());
         return personRepository.save(personEntity);
     }
 
     @Override
-    public void update(Long clientId, UpdatePersonDTO person) {
+    public void update(UpdatePersonDTO person) {
         // 1. Busco la persona
         PersonEntity personEntity = personRepository.findById(person.getPersonId())
                 .orElseThrow(() -> new PersonException("No existe persona con id: " + person.getPersonId()));
-//        personEntity.setClientEntity(ClientEntity.builder().clientId(clientId).build());
         // 2. Compruebo que campos se pide actualizar
         if(person.getName() != null){
             personEntity.setName(person.getName());

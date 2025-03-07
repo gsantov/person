@@ -40,7 +40,7 @@ public class ClientService implements IClientService {
         // 1. Busco el id de la persona por cliente
         client.setPersonId(findPersonByClientId(clientId));
         // 2. Edito la persona
-        PersonEntity person = personService.edit(clientId, client);
+        PersonEntity person = personService.edit(client);
         // 3. Edito el cliente
         ClientEntity clientEntity = ClientMapper.INSTANCE.updateClientDtoToClientEntity(client);
         clientEntity.setPersonEntity(person);
@@ -52,7 +52,7 @@ public class ClientService implements IClientService {
         // 1. Busco el id de la persona por cliente
         client.setPersonId(findPersonByClientId(clientId));
         // 2. Actualizo la persona
-        personService.update(clientId, client);
+        personService.update(client);
         // 3. Busco el cliente por id
         ClientEntity clientEntity = clientRepository.findById(clientId)
                 .orElseThrow(() -> new PersonException("No existe cliente con id: " + clientId));
